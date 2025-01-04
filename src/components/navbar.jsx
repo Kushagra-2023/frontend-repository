@@ -11,18 +11,18 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import PersonIcon from '@mui/icons-material/Person';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import PersonIcon from '@mui/icons-material/Person';
+import { useTheme } from '@mui/material/styles'; // Import to use theme
 
-// const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Logout'];
 
-function ResponsiveAppBar({ window, pages = []}) {
+function ResponsiveAppBar({ window, pages = [] }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate();
+  const theme = useTheme(); // Access the theme
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -33,7 +33,7 @@ function ResponsiveAppBar({ window, pages = []}) {
 
   const handleCloseNavMenu = (page) => {
     setAnchorElNav(null);
-    switch (page){
+    switch (page) {
       case 'Booking':
         navigate("/homepage");
         break;
@@ -47,7 +47,7 @@ function ResponsiveAppBar({ window, pages = []}) {
 
   const handleCloseUserMenu = (setting) => {
     setAnchorElUser(null);
-    switch (setting){
+    switch (setting) {
       case 'Profile':
         handleProfile();
         break;
@@ -55,7 +55,7 @@ function ResponsiveAppBar({ window, pages = []}) {
         handleLogout();
         break;
       default:
-        console.log("Some shit");
+        console.log("Some error");
     }
   };
 
@@ -63,20 +63,18 @@ function ResponsiveAppBar({ window, pages = []}) {
     console.log("Profile clicked");
     navigate("/profile");
   };
-  
+
   const handleLogout = () => {
     // Clear userId from localStorage
     localStorage.removeItem('userId');
     // Redirect to login page
     navigate('/');
   };
-  
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ backgroundColor: theme.palette.primary.main, border: '2px solid #90AEAD'}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           <Typography
             variant="h6"
             noWrap
@@ -88,7 +86,7 @@ function ResponsiveAppBar({ window, pages = []}) {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              color: theme.palette.primary.contrastText, // Dynamic color
               textDecoration: 'none',
             }}
           >
@@ -104,7 +102,7 @@ function ResponsiveAppBar({ window, pages = []}) {
               onClick={handleOpenNavMenu}
               color="inherit"
             >
-              <PersonIcon />
+              <MenuIcon />
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -129,7 +127,7 @@ function ResponsiveAppBar({ window, pages = []}) {
               ))}
             </Menu>
           </Box>
-          {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
+
           <Typography
             variant="h5"
             noWrap
@@ -142,27 +140,29 @@ function ResponsiveAppBar({ window, pages = []}) {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              color: theme.palette.primary.contrastText, // Dynamic color
               textDecoration: 'none',
             }}
           >
             LOGO
           </Typography>
+
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={() => handleCloseNavMenu(page)}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: theme.palette.primary.contrastText, display: 'block' }} // Dynamic color
               >
                 {page}
               </Button>
             ))}
           </Box>
+
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <PersonIcon sx={{fontSize: '100%', color: 'white'}} />
+                <PersonIcon sx={{ fontSize: '100%', color: theme.palette.primary.contrastText }} /> {/* Dynamic color */}
               </IconButton>
             </Tooltip>
             <Menu
@@ -193,4 +193,5 @@ function ResponsiveAppBar({ window, pages = []}) {
     </AppBar>
   );
 }
+
 export default ResponsiveAppBar;

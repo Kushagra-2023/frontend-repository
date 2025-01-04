@@ -1,10 +1,13 @@
 import React from 'react';
-import { Box, Container, Typography, Link } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles'; // Import to use theme
 import Grid from '@mui/material/Grid2';
 
 const Footer = () => {
+  const theme = useTheme(); // Access the theme
+
   return (
-    <Box sx={{ backgroundColor: '#1976d2', color: 'white', padding: '20px 0', marginTop: '5vh' }}>
+    <Box sx={{ backgroundColor: theme.palette.primary.main, color: theme.palette.primary.contrastText, padding: '20px 0', marginTop: '5vh' }}>
       <Container maxWidth="lg">
         <Grid container spacing={4} justifyContent="space-between">
           <Grid item xs={12} md={4}>
@@ -18,16 +21,16 @@ const Footer = () => {
           <Grid item xs={12} md={4} sx={{ textAlign: 'left' }}>
             <Grid container direction="column" spacing={1}>
               <Grid item>
-                  Phone no.: +91 9999999999
+                Phone no.: +91 9999999999
               </Grid>
               <Grid item>
-                  Email: expectnoreply@yourquery.any 
+                Email: expectnoreply@yourquery.any
               </Grid>
               <Grid item>
-                  Commited to serving the British crown.
+                Commited to serving the British crown.
               </Grid>
             </Grid>
-          </Grid>                
+          </Grid>
         </Grid>
       </Container>
       <Box sx={{ textAlign: 'center', paddingTop: '20px' }}>

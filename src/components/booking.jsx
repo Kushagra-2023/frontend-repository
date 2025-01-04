@@ -55,7 +55,8 @@ export default function Booking() {
     padding: 10,
     width: "40vw",
     margin: "5vh auto",
-    borderRadius: "15px"
+    borderRadius: "15px",
+    border: '2px solid #90AEAD'
   };
 
   const url = "http://127.0.0.1:8000/booking/seatbooking";

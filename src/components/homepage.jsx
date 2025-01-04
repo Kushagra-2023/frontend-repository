@@ -62,7 +62,8 @@ export default function Homepage({ stationData }) {
       width: "70vw",
       margin: "4vh auto",
       marginBottom: "2vh",
-      borderRadius: "15px"
+      borderRadius: "15px",
+      border: '2px solid #90AEAD'
   };
 
   return (

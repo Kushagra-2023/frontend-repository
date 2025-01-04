@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import { useNavigate } from 'react-router-dom';
 
@@ -36,27 +36,33 @@ function Display({ data }) {
   };
 
   return (
-    <Grid container direction="column" spacing={3} sx={{ width: '100%' }}>
-      {/* DataGrid Section */}
-      
-      <Grid item style={{ height: 350, width: '100%' }}>
-        <DataGrid
-          rows={data}
-          columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
-          onRowClick={onRowClick}
-        />
+    data && data.length > 0 ? (
+      <Grid container direction="column" spacing={3} sx={{ width: '100%' }}>
+        {/* DataGrid Section */}
+        <Grid item style={{ height: 350, width: '100%' }}>
+          <DataGrid
+            rows={data}
+            columns={columns}
+            pageSize={5}
+            rowsPerPageOptions={[5]}
+            onRowClick={onRowClick}
+          />
+        </Grid>
+  
+        {/* Button Section */}
+        <Grid item>
+          <Button variant="contained" onClick={handleProceed}>
+            Proceed
+          </Button>
+        </Grid>
       </Grid>
-
-      {/* Button Section */}
-      <Grid item>
-        <Button variant="contained" onClick={handleProceed}>
-          Proceed
-        </Button>
-      </Grid>
-    </Grid>
+    ) : (
+      <Typography variant="subtitle1" color="textSecondary">
+        No data available to display.
+      </Typography>
+    )
   );
+  
 }
 
 export default Display;

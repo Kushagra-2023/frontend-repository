@@ -12,6 +12,9 @@ import Profile from './components/profile';
 import ResponsiveAppBar from './components/navbar';
 import Footer from './components/footer';
 import { motion, AnimatePresence } from "framer-motion";
+import theme from './theme';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 function LocationProvider({ children }) {
   return <AnimatePresence>{children}</AnimatePresence>;
@@ -166,18 +169,40 @@ function App() {
   const noNavRoutes = ["/", "/signup"];
 
   return (
-    <div className="App">
-      <div style={{ minHeight: '80vh' }}>
-        {!noNavRoutes.includes(location.pathname) && (
-          <ResponsiveAppBar pages={["Book", "History"]} />
-        )}
-        <LocationProvider>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <div className="App">
+        <div style={{ minHeight: '80vh' }}>
+          {!noNavRoutes.includes(location.pathname) && (
+            <ResponsiveAppBar pages={["Book", "History"]} />
+          )}
           <RoutesWithAnimation />
-        </LocationProvider>
+        </div>
+        {!noNavRoutes.includes(location.pathname) && <Footer />}
       </div>
-      {!noNavRoutes.includes(location.pathname) && <Footer />}
-    </div>
+    </ThemeProvider>
   );
 }
 
 export default App;
+
+// function App() {
+//   const location = useLocation();
+//   const noNavRoutes = ["/", "/signup"];
+
+//   return (
+//     <div className="App">
+//       <div style={{ minHeight: '80vh' }}>
+//         {!noNavRoutes.includes(location.pathname) && (
+//           <ResponsiveAppBar pages={["Book", "History"]} />
+//         )}
+//         <LocationProvider>
+//           <RoutesWithAnimation />
+//         </LocationProvider>
+//       </div>
+//       {!noNavRoutes.includes(location.pathname) && <Footer />}
+//     </div>
+//   );
+// }
+
+// export default App;
