@@ -72,7 +72,7 @@ function ResponsiveAppBar({ window, pages = [] }) {
   };
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: theme.palette.primary.main, border: '2px solid #90AEAD'}}>
+    <AppBar position="static" sx={{ backgroundColor: theme.palette.primary.main, border: '2px solid #90AEAD', overflow: 'hidden' }}> {/* Dynamic color */}
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -166,7 +166,7 @@ function ResponsiveAppBar({ window, pages = [] }) {
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: '45px' }}
+              sx={{ mt: '45px', overflow: 'hidden' }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{

@@ -42,7 +42,7 @@ const Signup = () => {
                 setName("");
                 setEmail("");
                 setPassword("");
-                navigate("/login"); // Redirect to signup page
+                navigate("/"); // Redirect to signup page
 
             } else {
                 setError(response.data.message);
